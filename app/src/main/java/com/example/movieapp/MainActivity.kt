@@ -324,7 +324,7 @@ fun MoviePage(movie: Movie, verif: Boolean = false, navController: NavController
                     modifier = Modifier.padding(8.dp),
                     text = movie.name,
                     color = Color.White,
-                    style = TextStyle(fontSize = 30.sp, ) // Adjust the font size
+                    style = TextStyle(fontSize = 30.sp, fontFamily = FontFamily(Font(R.font.quicksand)), fontWeight = FontWeight.ExtraBold) // Adjust the font size
                 )
                 Row (modifier = Modifier
                     .fillMaxWidth()
