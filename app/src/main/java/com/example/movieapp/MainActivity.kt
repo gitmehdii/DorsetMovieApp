@@ -52,6 +52,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -66,18 +67,21 @@ val Movie1 = Movie("Star Wars III", "star_wars_3.jpeg",
 
 val ListStarring2 = arrayOf("Cillian Murphy", "Emily Blunt", "Robert Downey Jr", "Matt Damon");
 val Movie2 = Movie("Oppenheimer", "oppenheimer.jpeg",
-    "Universal Pictures", "The story of the development of the atomic bomb by the Manhattan Project during World War II.",
+    "Universal Pictures", "The story of the development of the atomic bomb by " +
+            "the Manhattan Project during World War II.",
     ListStarring2, 180, Random.nextInt(0, 16), 0)
 
 val ListStarring3 = arrayOf("Tom Holland", "Mark Wahlberg", "Antonio Banderas");
 val Movie3 = Movie("Uncharted", "uncharted.jpeg",
-    "Columbia Pictures", "Street-smart Nathan Drake is recruited by seasoned treasure hunter Victor \"Sully\" Sullivan to recover a fortune amassed by Ferdinand Magellan.",
+    "Columbia Pictures", "Street-smart Nathan Drake is recruited by seasoned " +
+            "treasure hunter Victor \"Sully\" Sullivan to recover a fortune amassed by Ferdinand " +
+            "Magellan.",
     ListStarring3, 116, Random.nextInt(0, 16), 0)
 
 val ListStarring4= arrayOf("Yoshitsugu Matsuoka", "Natsuki Hanae", "Hiro Shimono", "Akari Kitô", "Kengo Kawanishi");
 val Movie4 = Movie("Demon Slayer", "demon_slayer.jpeg",
     "Aniplex", "After his family was brutally murdered and his sister turned into a demon, Tanjiro Kamado's journey as a demon slayer began.",
-    ListStarring4, 119, Random.nextInt(0, 16), 2)
+    ListStarring4, 119, Random.nextInt(0, 16), 0)
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -479,6 +483,30 @@ fun MoviePage(movie: Movie, verif: Boolean = false, navController: NavController
                             color = Color.White,
                             style = TextStyle(fontSize = 16.sp)
                         )
+                    }
+                    if (movie.seats_remaining <= 3) {
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight()
+                            .padding(8.dp),
+                            horizontalArrangement = Arrangement.End)
+                        {
+
+                            Text(
+                                text = "Filling fast",
+                                color = Color.White,
+                                style = TextStyle(fontSize = 16.sp),
+                                modifier = Modifier
+                                    .padding(8.dp)
+                                    .clickable(onClick = {
+                                        movie.seats_selected += movie.seats_remaining
+                                        movie.seats_remaining = 0
+                                        text = "${movie.seats_remaining} seats remaining"
+                                        text2 = "${movie.seats_selected}"
+                                    }),
+                                textDecoration = TextDecoration.Underline,
+                            )
+                        }
                     }
                 }
             }
