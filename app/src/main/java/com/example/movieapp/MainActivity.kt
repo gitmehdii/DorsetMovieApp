@@ -382,24 +382,47 @@ fun MoviePage(movie: Movie, verif: Boolean = false, navController: NavController
                     Row (modifier = Modifier
                         .fillMaxWidth()
                         .fillMaxHeight(),
-                        horizontalArrangement = Arrangement.End)
+                        )
                     {
-                        Image(
-                            painter = painterResource(id = R.drawable.seatg),
-                            contentDescription = "Cinema Image",
+                        Text(text ="Cancel",
+                            color = Color.White,
+                            style = TextStyle(fontSize = 20.sp, fontFamily = FontFamily(Font(R.font.quicksand))),
+                            textDecoration = TextDecoration.Underline,
                             modifier = Modifier
-                                .height(35.dp) // Adjust the height
-                                .width(35.dp),
-                            contentScale = ContentScale.Crop
-                        )
-                        Box(modifier = Modifier.width(5.dp) )
-                        {
+                                .padding(8.dp)
+                                .clickable(onClick = {
+                                    movie.seats_remaining += movie.seats_selected
+                                    movie.seats_selected = 0
+                                    text = "${movie.seats_remaining} seats remaining"
+                                    text2 = "${movie.seats_selected}"
+                                    navController.popBackStack()
+                                    navController.navigate("MoviePage/${movie.name}")
 
-                        }
-                        Text(text ="${movie.seats_selected} seats selected",
-                            color = Color.Green,
-                            style = TextStyle(fontSize = 20.sp)
+                                }),
                         )
+                        Row(modifier = Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(),
+                            horizontalArrangement = Arrangement.End
+                        )
+                        {
+                            Image(
+                                painter = painterResource(id = R.drawable.seatg),
+                                contentDescription = "Cinema Image",
+                                modifier = Modifier
+                                    .height(35.dp) // Adjust the height
+                                    .width(35.dp),
+                                contentScale = ContentScale.Crop
+                            )
+                            Box(modifier = Modifier.width(5.dp) )
+                            {
+
+                            }
+                            Text(text ="${movie.seats_selected} seats selected",
+                                color = Color.Green,
+                                style = TextStyle(fontSize = 20.sp)
+                            )
+                        }
                     }
                 }
                 else
