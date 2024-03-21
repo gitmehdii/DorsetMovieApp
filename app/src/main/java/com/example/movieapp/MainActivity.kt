@@ -155,7 +155,7 @@ fun MovieCard(movie: Movie, navController: NavController) {
 
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         ) {
             Image(
                 painter = painterResource(id = IdImage!!),
@@ -332,7 +332,8 @@ fun MoviePage(movie: Movie, verif: Boolean = false, navController: NavController
                 )
                 Row (modifier = Modifier
                     .fillMaxWidth()
-                    .padding(8.dp),){
+                    .padding(8.dp),)
+                {
                     Text(text = "Starring: ",
                         color = Color.White,
                         style = TextStyle(fontSize = 16.sp ,fontWeight = FontWeight.ExtraBold, fontFamily = FontFamily(Font(R.font.quicksand))) // Adjust the font size
