@@ -59,6 +59,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
+
 val ListStarring1 = arrayOf("Ewan McGregor", "Natalie Portman", "Hayden Christensen");
 val Movie1 = Movie("Star Wars III", "star_wars_3.jpeg",
     "LucasFilm", "Three years into the Clone Wars, Obi-Wan pursues a new threat," +
